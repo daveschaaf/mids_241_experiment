@@ -174,3 +174,44 @@ df |>
 ggsave("/Users/davidschaaf/MIDS/CausalInference241/mids_241_experiment/output/compliance.png", 
        width = 4.5, height = 3.5, dpi = 300)
 
+
+## Summary variables for inline code
+
+# Group ns
+n_control <- nrow(df |> filter(group == "control"))
+n_video   <- nrow(df |> filter(group == "video"))
+n_ai      <- nrow(df |> filter(group == "ai"))
+n_total   <- nrow(df)
+
+# Age distribution by group (%)
+age_pct <- df |>
+  group_by(group) |>
+  summarise(
+    pct_18_24 = round(mean(ageRange == "18–24", na.rm=TRUE)*100, 1),
+    pct_25_34 = round(mean(ageRange == "25–34", na.rm=TRUE)*100, 1),
+    pct_35_44 = round(mean(ageRange == "35–44", na.rm=TRUE)*100, 1),
+    pct_45_54 = round(mean(ageRange == "45–54", na.rm=TRUE)*100, 1),
+    pct_55_plus = round(mean(ageRange == "55+",  na.rm=TRUE)*100, 1)
+  )
+
+age_control <- age_pct |> filter(group == "control")
+age_video   <- age_pct |> filter(group == "video")
+age_ai      <- age_pct |> filter(group == "ai")
+
+# Prior experience (%)
+exp_pct <- df |>
+  group_by(group) |>
+  summarise(
+    pct_sudoku        = round(mean(playedSudoku == "Yes",       na.rm=TRUE)*100, 1),
+    pct_killer_sudoku = round(mean(playedKillerSudoku == "Yes", na.rm=TRUE)*100, 1)
+  )
+
+exp_control <- exp_pct |> filter(group == "control")
+exp_video   <- exp_pct |> filter(group == "video")
+exp_ai      <- exp_pct |> filter(group == "ai")
+
+save(n_control, n_video, n_ai, n_total,
+     age_control, age_video, age_ai,
+     exp_control, exp_video, exp_ai,
+     assigned_control_n, assigned_video_n, assigned_ai_n,
+     file = "./data/processed/sudoku_summary.RData")

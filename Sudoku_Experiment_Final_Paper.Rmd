@@ -6,7 +6,11 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
+library(dplyr)
+library(tidyverse)
 knitr::opts_chunk$set(echo = TRUE)
+
+load("./data/processed/sudoku_summary.RData")
 ```
 
 Does learning with an AI tutor improve performance of mastering a new puzzle compared to self-discovery or video tutorial? 
@@ -37,7 +41,7 @@ The treatment we employ is expected to improve a subject’s puzzle-solving perf
 
 ## Potential Outcomes
 
-Each user has a potential outcome for each of the 3 treatment conditions - control (D = 0), video (D = 1), AI tutor (D = 2). There are 2 treatment effects under investigation - the effect of the video (𝛕-Video) and the effect of the AI tutor (𝛕-AI). All users had uniform probability of being assigned into each of the treatments. The control condition is the baseline that we compare both the video and AI tutor against. We are not examining the potential treatment effect of the video compared to the AI tutor because the treatment effect is better understood by comparing it to a no aids base case. 
+Each user has a potential outcome for each of the 3 treatment conditions - control (D = 0), video (D = 1), AI tutor (D = 2). There are 2 treatment effects under investigation - the effect of the video ($\tau_{video}$) and the effect of the AI tutor ($\tau_{ai}$). All users had uniform probability of being assigned into each of the treatments. The control condition is the baseline that we compare both the video and AI tutor against. We are not examining the potential treatment effect of the video compared to the AI tutor because the treatment effect is better understood by comparing it to a no aids base case. 
 $E[Y(1)] - E[Y(0)]  = E[Y(1) - Y(0)] = E[\tau_{video}]$
 $E[Y(2)] - E[Y(0)]  = E[Y(2) - Y(0)] = E[\tau_{ai}]$
 There are 3 outcome variables that are tracked in the data so there are a total of 6 different measurable treatment effects:
@@ -47,8 +51,18 @@ AI Tutor treatment: $\tau_{completion-ai}, \tau_{actions-ai}, \tau_{time-ai}$
 
 ## Randomization
 
+
 The application set a random treatment condition at the time the subject loaded the page and the randomization was stored in the user session. That way if the user decided to refresh the page for any reason they would still be assigned to the same condition.  We used a JavaScript random function to choose between one of the 3 treatments. Each randomization was an independent run of the randomization function, so the prior results did not change the probabilities of the next user. Each of the 3 conditions had uniform probability of being chosen. 
 
+```{r group-assignment, echo=FALSE, fig.cap="Figure 1: Treatment Group Assignment"}
+n_control_pct <- round(n_control / n_total * 100, 1)
+n_video_pct   <- round(n_video   / n_total * 100, 1)
+n_ai_pct      <- round(n_ai      / n_total * 100, 1)
+
+knitr::include_graphics("./output/group_assignment.png")
+```
+
+The randomization did not produce a uniform distribution across all groups. The control group had `r n_control` compared to `r n_video` assigned to video and `r n_ai` assigned to AI Tutor. With total participation of `r n_total` subjects, the data distribution is unbalanced with `r n_control_pct`% assigned to control, `r n_video_pct`%  to video, and `r n_ai_pct`% to AI tutor.
 
 ## Treatment
 
