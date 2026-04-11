@@ -64,10 +64,11 @@ ggplot(df, aes(x = ageRange, fill = group)) +
   )
 ggsave("./output/age_distribution.png", width = width, height = height, dpi = 300)
 
-
+## Previous experience
 df |>
   pivot_longer(cols = c(playedSudoku, playedKillerSudoku),
                names_to = "Variable", values_to = "Response") |>
+  mutate(Response = factor(Response, levels = c("Yes", "No"))) |>
   mutate(Variable = recode(Variable,
                            "playedSudoku" = "Played Sudoku",
                            "playedKillerSudoku" = "Played Killer Sudoku")) |>
@@ -78,6 +79,9 @@ df |>
   facet_wrap(~Variable) +
   scale_fill_manual(values = c("Yes" = "#2171b5", "No" = "#6baed6")) +
   labs(title = "Prior Sudoku Experience by Treatment Group", x = "Group", y = "Count") +
+  geom_text(aes(label = n), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, size = 2.5) +
   theme_minimal() +
   theme(
     axis.text.x = element_text(size = 6),
@@ -89,5 +93,38 @@ df |>
     legend.title = element_text(size = 8)
   )
 
+
+
 ggsave("./output/sudoku_experience.png", width = width, height = height, dpi = 300)
+
+## Compliance check
+
+df <- df |>
+  mutate(compliant = case_when(
+    group == "video" ~ puzzle1ElapsedSeconds >= 279,
+    group == "ai"    ~ aiMessageCount > 0,
+    group == "control" ~ NA
+  ))
+
+df |>
+  filter(group != "control") |>
+  group_by(group, compliant) |>
+  summarise(n = n(), .groups = "drop") |>
+  mutate(compliant = ifelse(compliant, "Compliant", "Non-Compliant")) |>
+  ggplot(aes(x = group, y = n, fill = compliant)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("Compliant" = "#2171b5", "Non-Compliant" = "#6baed6")) +
+  geom_text(aes(label = n), position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  labs(title = "Treatment Compliance by Group", x = "Group", y = "Count", fill = "Status") +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 7),
+    axis.title = element_text(size = 8),
+    plot.title = element_text(size = 9),
+    legend.text = element_text(size = 7),
+    legend.title = element_text(size = 8)
+  )
+
+ggsave("/Users/davidschaaf/MIDS/CausalInference241/mids_241_experiment/output/compliance.png", 
+       width = 4.5, height = 3.5, dpi = 300)
 
