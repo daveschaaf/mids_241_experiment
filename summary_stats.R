@@ -210,8 +210,22 @@ exp_control <- exp_pct |> filter(group == "control")
 exp_video   <- exp_pct |> filter(group == "video")
 exp_ai      <- exp_pct |> filter(group == "ai")
 
+
+# Compliance checks 
+# Compliance
+n_video_compliant     <- df |> filter(group == "video", compliant == TRUE)  |> nrow()
+n_video_noncompliant  <- df |> filter(group == "video", compliant == FALSE) |> nrow()
+n_ai_compliant        <- df |> filter(group == "ai",    compliant == TRUE)  |> nrow()
+n_ai_noncompliant     <- df |> filter(group == "ai",    compliant == FALSE) |> nrow()
+
+compliance_rate_video <- round(n_video_compliant / n_video * 100, 1)
+compliance_rate_ai    <- round(n_ai_compliant    / n_ai    * 100, 1)
+
+
+# Save variables for access inline
 save(n_control, n_video, n_ai, n_total,
      age_control, age_video, age_ai,
      exp_control, exp_video, exp_ai,
-     assigned_control_n, assigned_video_n, assigned_ai_n,
+     n_video_compliant, n_video_noncompliant, compliance_rate_video,
+     n_ai_compliant, n_ai_noncompliant, compliance_rate_ai,
      file = "./data/processed/sudoku_summary.RData")

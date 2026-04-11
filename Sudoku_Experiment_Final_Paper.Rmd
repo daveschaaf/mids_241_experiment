@@ -90,6 +90,10 @@ The AI message count column can help us evaluate whether participants assigned t
 
 We also tracked the amount of time spent on the first puzzle during the learning phase. The video was 4:39 long, so any video participant who did not spend at least that amount of time on the page would not have watched the full video. Of the X participants who were assigned to the video group, 2 spent enough time on the page to have watched the video in full. We were not able to detect if the user clicked play on the video due to YouTube iframe restrictions.
 
+Of the `r n_ai` people assigned to the AI tutor group, `r n_ai_compliant` sent messages to the chat bot, a compliance rate of `r round(compliance_rate_ai,0)`%.
+
+Of the `r n_video` participants assigned to the video group, `r n_video_compliant` spent enough time on the page to have watched the video in full, a compliance rate of `r round(compliance_rate_video,0)`%.
+
 
 # Results
 
