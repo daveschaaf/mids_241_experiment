@@ -38,8 +38,8 @@ The treatment we employ is expected to improve a subject’s puzzle-solving perf
 ## Potential Outcomes
 
 Each user has a potential outcome for each of the 3 treatment conditions - control (D = 0), video (D = 1), AI tutor (D = 2). There are 2 treatment effects under investigation - the effect of the video (𝛕-Video) and the effect of the AI tutor (𝛕-AI). All users had uniform probability of being assigned into each of the treatments. The control condition is the baseline that we compare both the video and AI tutor against. We are not examining the potential treatment effect of the video compared to the AI tutor because the treatment effect is better understood by comparing it to a no aids base case. 
-$E[Y(0)] - E[Y(1)]  = E[Y(0) - Y(1)] = E[\tau_{video}]$
-$E[Y(0)] - E[Y(2)]  = E[Y(0) - Y(2)] = E[\tau_{ai}]$
+$E[Y(1)] - E[Y(0)]  = E[Y(1) - Y(0)] = E[\tau_{video}]$
+$E[Y(2)] - E[Y(0)]  = E[Y(2) - Y(0)] = E[\tau_{ai}]$
 There are 3 outcome variables that are tracked in the data so there are a total of 6 different measurable treatment effects:
 Video treatment: $\tau_{completion-video}, \tau_{actions-video}, \tau_{time-video}$
 AI Tutor treatment: $\tau_{completion-ai}, \tau_{actions-ai}, \tau_{time-ai}$

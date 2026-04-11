@@ -74,6 +74,7 @@ df |>
                            "playedKillerSudoku" = "Played Killer Sudoku")) |>
   group_by(group, Variable, Response) |>
   summarise(n = n(), .groups = "drop") |>
+  complete(group, Variable, Response, fill = list(n = 0)) |>
   ggplot(aes(x = group, y = n, fill = Response)) +
   geom_bar(stat = "identity", position = "dodge") +
   facet_wrap(~Variable) +
@@ -94,8 +95,53 @@ df |>
   )
 
 
+## previous experience broken into smaller charts
+# Smaller chart - killer sudoku
+df |>
+  mutate(playedKillerSudoku = factor(playedKillerSudoku, levels = c("Yes", "No"))) |>
+  group_by(group, playedKillerSudoku) |>
+  summarise(n = n(), .groups = "drop") |>
+  complete(group, playedKillerSudoku, fill = list(n = 0)) |>
+  ggplot(aes(x = group, y = n, fill = playedKillerSudoku)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = n), position = position_dodge(width = 0.9), vjust = -0.5, size = 2.5) +
+  scale_fill_manual(values = c("Yes" = "#2171b5", "No" = "#6baed6")) +
+  labs(title = "Played Killer Sudoku", x = "Group", y = "Count", fill = "Response") +
+  ylim(0, 23) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 6),
+    axis.title = element_text(size = 7),
+    plot.title = element_text(size = 8),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7)
+  )
 
-ggsave("./output/sudoku_experience.png", width = width, height = height, dpi = 300)
+ggsave("./output/killer_sudoku_exp.png", width = 3.5, height = 2, dpi = 300)
+
+# Smaller chart - Played Sudoku
+df |>
+  mutate(playedSudoku = factor(playedSudoku, levels = c("Yes", "No"))) |>
+  group_by(group, playedSudoku) |>
+  summarise(n = n(), .groups = "drop") |>
+  complete(group, playedSudoku, fill = list(n = 0)) |>
+  ggplot(aes(x = group, y = n, fill = playedSudoku)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_text(aes(label = n), position = position_dodge(width = 0.9), vjust = -0.5, size = 2.5) +
+  scale_fill_manual(values = c("Yes" = "#2171b5", "No" = "#6baed6")) +
+  labs(title = "Played Sudoku", x = "Group", y = "Count", fill = "Response") +
+  ylim(0, 23) +
+  theme_minimal() +
+  theme(
+    axis.text = element_text(size = 6),
+    axis.title = element_text(size = 7),
+    plot.title = element_text(size = 8),
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 7)
+  )
+
+ggsave("./output/sudoku_exp.png", width = 3.5, height = 2, dpi = 300)
+
 
 ## Compliance check
 
