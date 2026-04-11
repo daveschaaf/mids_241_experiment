@@ -1,8 +1,10 @@
 ---
-title: "241: Sudoku Experiment Final Paper"
+title: '241: Sudoku Experiment Final Paper'
 author: "Nonso Orji, Novejot Bal, Erica Li, David Schaaf"
 date: "April 14, 2026"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -91,7 +93,7 @@ The second treatment group experienced a non-personalized video tutorial to solv
 
 The control group did not have any learning assistance and was asked to solve the puzzle using their existing skills and knowledge.
 
-All subjects were assigned treatment before completing their practice puzzle. Those in the treatment groups can use their respective treatments as much as they would like during the learning phase. Once a subject has completed their practice puzzle, the web application showed them to a second puzzle, which will be completed with no learning aids whatsoever. The users still had access to the basic list of rules, but they did not have the AI tutor or the video tutorial. All users were presented with the exact same puzzles for the learnign phase and a different puzzle for the test phase which was also consistent across conditions.
+All subjects were assigned treatment before completing their practice puzzle. Those in the treatment groups can use their respective treatments as much as they would like during the learning phase. Once a subject has completed their practice puzzle, the web application showed them to a second puzzle, which will be completed with no learning aids whatsoever. The users still had access to the basic list of rules, but they did not have the AI tutor or the video tutorial. All users were presented with the exact same puzzles for the learning phase and a different puzzle for the test phase which was also consistent across conditions.
 
 
 The experiment was set up in a custom web application. The users were assigned to the treatment condition on page load and were presented with the practice puzzle along with the 3 treatment conditions. All users received the same practice puzzle, the only difference was the level of instruction provided through the treatments 1) no assistance, 2) a short tutorial video, or 3) an AI tutor. The video  and puzzle were embedded into the page so users would not need to go off the page to participate in the experiment. The AI tutor was also embedded in the page so the users would be able to access the tutor and the puzzle simultaneously. While we timed the puzzle for our results, the users were instructed that the purpose was to understand the rules to be used on a test puzzle later. Users could continue to the next step at any point.
@@ -103,9 +105,9 @@ After the completion of the learning phase, users saw a confirmation page tellin
 
 The participants’ results are stored in a Google Sheets by Vercel and includes columns such as ‘puzzle1TabSwitches’, ‘puzzle2TabSwitches’, and ‘aiMessageCount’. Tab switch columns can help us evaluate whether a participant may have deviated from their respective treatment group by searching for puzzle-solving information elsewhere or if this caused other deviant behavior which may impact the estimated treatment effect. 
 
-The AI message count column can help us evaluate whether participants assigned to the AI Tutor group actually utilized the assigned treatment for assistance in learning how to solve the puzzle. We recorded the full chat history of all participants who interacted with with AI tutor to see what types of conversations they had. Of the X people who were assigned to the AI tutor group, 5 sent messages to the chat bot. 
+The AI message count column can help us evaluate whether participants assigned to the AI Tutor group actually utilized the assigned treatment for assistance in learning how to solve the puzzle. We recorded the full chat history of all participants who interacted with with AI tutor to see what types of conversations they had. Of the 14 people who were assigned to the AI tutor group, 5 sent messages to the chat bot. 
 
-We also tracked the amount of time spent on the first puzzle during the learning phase. The video was 4:39 long, so any video participant who did not spend at least that amount of time on the page would not have watched the full video. Of the X participants who were assigned to the video group, 2 spent enough time on the page to have watched the video in full. We were not able to detect if the user clicked play on the video due to YouTube iframe restrictions.
+We also tracked the amount of time spent on the first puzzle during the learning phase. The video was 4:39 long, so any video participant who did not spend at least that amount of time on the page would not have watched the full video. Of the 10 participants who were assigned to the video group, 2 spent enough time on the page to have watched the video in full. It is possible people watched the video at > 1x speed, but it is not certain. We were not able to detect if the user clicked play on the video due to YouTube iframe restrictions.
 
 Of the `r n_ai` people assigned to the AI tutor group, `r n_ai_compliant` sent messages to the chat bot, a compliance rate of `r round(compliance_rate_ai,0)`%.
 
