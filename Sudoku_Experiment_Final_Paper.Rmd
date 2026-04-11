@@ -2,7 +2,7 @@
 title: "241: Sudoku Experiment Final Paper"
 author: "Nonso Orji, Novejot Bal, Erica Li, David Schaaf"
 date: "April 14, 2026"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -63,6 +63,23 @@ knitr::include_graphics("./output/group_assignment.png")
 ```
 
 The randomization did not produce a uniform distribution across all groups. The control group had `r n_control` compared to `r n_video` assigned to video and `r n_ai` assigned to AI Tutor. With total participation of `r n_total` subjects, the data distribution is unbalanced with `r n_control_pct`% assigned to control, `r n_video_pct`%  to video, and `r n_ai_pct`% to AI tutor.
+
+## Covariate Balance Checks
+```{r covariate_balance age, include=FALSE}
+control_age <-
+
+knitr::include_graphics("./output/age_distribution.png")
+```
+Age distribution was roughly similar across groups, with the majority of participants falling in the 25-34 and 35-44 age ranges. 
+
+```{r covariate_balance experience, include=FALSE}
+knitr::include_graphics("./output/sudoku_exp.png")
+knitr::include_graphics("./output/killer_sudoku_exp.png")
+```
+
+Prior Sudoku experience was high and consistent across all groups, with `r exp_control$pct_sudoku`%, `r exp_video$pct_sudoku`%, and `r exp_ai$pct_sudoku`% of control, video, and AI tutor participants respectively reporting prior Sudoku experience. This covariate is unlikely to confound the results.
+
+Prior Killer Sudoku experience represents a more meaningful imbalance. The video group had `r exp_video$pct_killer_sudoku`% of participants with prior Killer Sudoku experience compared to `r exp_control$pct_killer_sudoku`% in the control group and `r exp_ai$pct_killer_sudoku`% in the AI tutor group. Since Killer Sudoku experience is directly relevant to puzzle performance, this imbalance is an acknowledged limitation of the randomization.
 
 ## Treatment
 
