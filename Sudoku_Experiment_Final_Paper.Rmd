@@ -95,6 +95,14 @@ Of the `r n_ai` people assigned to the AI tutor group, `r n_ai_compliant` sent m
 Of the `r n_video` participants assigned to the video group, `r n_video_compliant` spent enough time on the page to have watched the video in full, a compliance rate of `r round(compliance_rate_video,0)`%.
 
 
+```{r tabswitches, include=FALSE}
+tabs_control <- tab_switches$mean_tab_switches[tab_switches$group == "control"]
+tabs_video <- tab_switches$mean_tab_switches[tab_switches$group == "video"]
+tabs_ai <- tab_switches$mean_tab_switches[tab_switches$group == "ai"]
+```
+Tab switch behavior was minimal across all groups. The mean number of tab switches during the test puzzle was `r tabs_control` for control, `r tabs_video` for video, and `r tabs_ai` for the AI tutor group. No group had a maximum exceeding 4 tab switches, and the majority of participants recorded zero switches, suggesting that tab switching did not represent a meaningful compliance concern.
+
+
 # Results
 
 There are 3 outcomes that were tracked with the results of the puzzle - the amount of time spent solving the second puzzle, successful completion of the second puzzle, and the number of actions taken on the puzzle board.

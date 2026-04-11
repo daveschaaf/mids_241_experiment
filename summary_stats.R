@@ -212,7 +212,7 @@ exp_ai      <- exp_pct |> filter(group == "ai")
 
 
 # Compliance checks 
-# Compliance
+# video and ai
 n_video_compliant     <- df |> filter(group == "video", compliant == TRUE)  |> nrow()
 n_video_noncompliant  <- df |> filter(group == "video", compliant == FALSE) |> nrow()
 n_ai_compliant        <- df |> filter(group == "ai",    compliant == TRUE)  |> nrow()
@@ -221,11 +221,20 @@ n_ai_noncompliant     <- df |> filter(group == "ai",    compliant == FALSE) |> n
 compliance_rate_video <- round(n_video_compliant / n_video * 100, 1)
 compliance_rate_ai    <- round(n_ai_compliant    / n_ai    * 100, 1)
 
+# tab switches compliance
+tab_switches <- df |>
+  group_by(group) |>
+  summarise(
+    mean_tab_switches = round(mean(puzzle2TabSwitches, na.rm=TRUE), 1),
+    max_tab_switches  = max(puzzle2TabSwitches, na.rm=TRUE),
+    any_switches      = sum(puzzle2TabSwitches > 0, na.rm=TRUE)
+  )
+
 
 # Save variables for access inline
 save(n_control, n_video, n_ai, n_total,
      age_control, age_video, age_ai,
      exp_control, exp_video, exp_ai,
      n_video_compliant, n_video_noncompliant, compliance_rate_video,
-     n_ai_compliant, n_ai_noncompliant, compliance_rate_ai,
+     n_ai_compliant, n_ai_noncompliant, compliance_rate_ai, tab_switches,
      file = "./data/processed/sudoku_summary.RData")
