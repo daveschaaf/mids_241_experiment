@@ -3,9 +3,9 @@ title: '241: Sudoku Experiment Final Paper'
 author: "Nonso Orji, Novejot Bal, Erica Li, David Schaaf"
 date: "April 14, 2026"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
