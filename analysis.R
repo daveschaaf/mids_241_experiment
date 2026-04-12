@@ -38,6 +38,8 @@ print(table(df_clean$group))
 cat("\nCompletion by group (cleaned):\n")
 print(table(df_clean$group, df_clean$completed))
 
+write_csv(df_clean, "./data/processed/df_clean.csv")
+
 # ---- Step 3: ITT Analysis on Completion ----
 
 itt_completion <- lm(completed ~ group, data = df_clean)

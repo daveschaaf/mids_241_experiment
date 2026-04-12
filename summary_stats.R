@@ -1,3 +1,9 @@
+# ==============================================================================
+# DATASCI-241 Killer Sudoku Experiment - Summary Stats
+# Author: David Schaaf
+# ==============================================================================
+
+
 library(dplyr)
 library(tidyverse)
 library(knitr)
@@ -7,10 +13,10 @@ library(ggplot2)
 height = 4
 width = 3.5
 
-df <- read_csv("./data/raw/killer_sudoku_experiment_raw.csv") |>
+df <- read_csv("./data/processed/df_clean.csv") |>
   mutate(
     group = factor(group, levels = c("control", "video", "ai")),
-    completed = puzzle2Correct == TRUE
+    completed = ifelse(is.na(puzzle2Correct), FALSE, puzzle2Correct)
   )
   
 
@@ -26,7 +32,7 @@ cov_summary <- df |>
     `Played Sudoku: Yes (%)` = as.character(round(mean(playedSudoku == "Yes", na.rm=TRUE)*100, 1)),
     `Played Killer Sudoku: Yes (%)` = as.character(round(mean(playedKillerSudoku == "Yes", na.rm=TRUE)*100, 1))
   ) |>
-  pivot_longer(-group, names_to = "Covariate", values_to = "value") |>
+  pivot_longer(cols = -group, names_to = "Covariate", values_to = "value") |>
   pivot_wider(names_from = group, values_from = value)
 
 cov_summary

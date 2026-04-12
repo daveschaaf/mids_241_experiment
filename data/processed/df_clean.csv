@@ -1,0 +1,42 @@
+participantId,group,timestamp,ageRange,playedSudoku,playedKillerSudoku,puzzle1Actions,puzzle1ElapsedSeconds,puzzle1TabSwitches,aiMessageCount,puzzle2Completed,puzzle2Actions,puzzle2TabSwitches,puzzle2Correct,puzzle2ElapsedSeconds,feedback,email,puzzle2GivenDigits,completed
+90dae189-b26a-4212-963a-869d6ce42a28,control,2026-03-19T05:18:13Z,35–44,Yes,No,2,53,0,0,No,11,0,FALSE,28,NA,NA,0,FALSE
+3a3b8a97-7492-4c61-bffc-161736ccf336,control,2026-03-19T05:21:40Z,45–54,Yes,No,61,287,0,0,No,320,0,FALSE,1260,that was harder than i thought,crezny@berkeley.edu,0,FALSE
+eaac9790-d24a-4a6f-bee6-f8d99abe9b90,control,2026-03-19T05:25:29Z,25–34,Yes,No,73,260,1,0,No,3,0,FALSE,26,NA,NA,0,FALSE
+254fed20-5c8e-4a20-9365-ab1033c7f9d7,video,2026-03-19T06:04:44Z,35–44,Yes,No,255,766,0,0,No,530,0,FALSE,1315,I enjoyed the Killer Sudoku puzzle! It was a good challenge. I gave myself a cap of ~20min to solve the puzzle and unfortunately ran out of time. Oh well. It was definitely still an enjoyable experience!,ethan.moody@berkeley.edu,0,FALSE
+fdd185e1-eef7-49a1-9097-dcf15cf11306,ai,2026-03-19T06:25:55Z,18–24,Yes,No,61,212,0,0,No,47,0,FALSE,172,One random thing would be to add a maybe category to the have you played Killer Sudoku question because I thought I hadn't but then I had before. Thanks for a great study!,mppaz@berkeley.edu,0,FALSE
+a727279f-07ad-4244-8115-6af7cd03ea34,control,2026-03-19T06:59:19Z,35–44,Yes,No,41,190,0,0,NA,NA,NA,NA,NA,NA,soluved408@yahoo.com,0,FALSE
+6a49de43-c4f7-45be-9ae8-7ab32d7f1dbc,control,2026-03-19T13:42:51Z,25–34,Yes,No,11,104,0,0,NA,NA,NA,NA,NA,NA,NA,0,FALSE
+a5eed804-1d2c-4497-86c5-adefa9c47374,ai,2026-03-19T15:11:56Z,55+,Yes,No,447,1291,1,4,NA,NA,NA,NA,NA,NA,NA,0,FALSE
+c961b643-b1f9-4de0-badc-92fe689e5908,control,2026-03-19T15:16:23Z,45–54,Yes,No,112,1961,1,0,No,58,0,FALSE,359,The test with just a 2 and no help was really hard.,mabehr@berkeley.edu,0,FALSE
+19ec649a-c111-43dd-9b2c-dcb0eb2ae31a,video,2026-03-19T15:50:29Z,35–44,Yes,No,94,354,0,0,No,38,0,FALSE,194,"I'm used to Sudoku having some numbers exist, looks like the one you gave us had a single number provided which made it very challenging. In terms of the rules, I think they were pretty straight forward for anyone who has done a Sudoku before.",ahsa_yakir@berkeley.edu,0,FALSE
+ce9db9b3-0320-47d2-a5c1-937bc08cae82,control,2026-03-19T16:05:53Z,25–34,Yes,No,72,172,0,0,Yes,232,0,TRUE,486,This was a lot of fun!!,ry.mak.hirt@berkeley.edu,0,TRUE
+a1b25d51-e9a6-47c7-b4c3-7856edc20779,ai,2026-03-19T16:41:02Z,45–54,Yes,No,56,397,0,0,NA,NA,NA,NA,NA,where was the actual puzzle?,sonalthakkar@gmail.com,0,FALSE
+71353d42-0b85-4f07-908a-e8a14b4573df,ai,2026-03-19T16:49:57Z,45–54,Yes,No,61,471,0,0,No,47,0,FALSE,302,NA,NA,0,FALSE
+ff09e736-0f95-4f83-9980-ad41cff629f0,ai,2026-03-19T17:16:11Z,35–44,Yes,No,59,611,0,2,Yes,197,1,TRUE,1790,This is a really nice study. I love this. Helps refresh my critical thinking skills.,sreeram.c@berkeley.edu,0,TRUE
+544142b8-d748-40b5-a9f7-20980d4bd30d,ai,2026-03-19T17:36:57Z,25–34,Yes,No,59,226,0,0,Yes,328,0,TRUE,1214,NA,ellie_parker@berkeley.edu,0,TRUE
+768392ff-f901-4bdd-8d38-89e564cf6d61,control,2026-03-19T18:04:48Z,25–34,Yes,No,201,998,0,0,Yes,542,0,TRUE,1029,NA,andrewwademoore@berkeley.edu,0,TRUE
+bc98fd99-37eb-426e-a651-1426fc99be71,control,2026-03-19T18:41:04Z,35–44,Yes,No,101,396,1,0,NA,NA,NA,NA,NA,NA,NA,0,FALSE
+41b18f61-c97b-4728-a834-a335b89903f0,video,2026-03-20T08:17:49Z,35–44,Yes,No,58,192,0,0,No,66,0,FALSE,375,NA,NA,NA,FALSE
+ec526466-eabd-4cc6-8112-cce24f1864dd,control,2026-03-21T15:20:55Z,25–34,Yes,No,64,183,0,0,Yes,154,0,TRUE,636,NA,grace_tevaseu@berkeley.edu,NA,TRUE
+83aed6c5-763b-47d2-adf2-c9bb56da2017,ai,2026-03-21T19:25:16Z,25–34,Yes,Yes,71,76,0,0,Yes,92,0,TRUE,88,"I'm not sure exactly how this study was supposed to go, but I'm a bit of a killer sudoku nut, so I'm sure I would be an outlier. Solved it in ~1:30.",gavin.g@berkeley.edu,NA,TRUE
+1302fc01-2058-4a77-b4a4-f567f8facd4b,control,2026-03-23T13:11:19Z,35–44,Yes,No,56,154,0,0,No,0,0,FALSE,128,NA,NA,NA,FALSE
+2ec925d7-aaa5-4e7e-abdf-919dfc782dad,video,2026-03-23T17:35:34Z,45–54,Yes,No,0,38,0,0,No,38,4,FALSE,2177,NA,NA,NA,FALSE
+238558e4-84d1-4252-a3f3-c48fa5876573,video,2026-03-23T21:25:50Z,25–34,Yes,No,64,206,0,0,Yes,136,0,TRUE,388,NA,roshni.misra@berkeley.edu,NA,TRUE
+8e383054-5ec2-486c-89fe-85163f870b79,video,2026-03-23T22:03:18Z,18–24,Yes,Yes,60,147,0,0,NA,NA,NA,NA,NA,NA,NA,NA,FALSE
+bfba49dd-40d6-4dfd-88eb-1af008114295,video,2026-03-23T22:04:02Z,18–24,Yes,Yes,0,3,0,0,Yes,170,0,TRUE,323,NA,cassidybruner19@gmail.com,NA,TRUE
+2717289c-1a2e-47ef-91e3-8f88334423a2,ai,2026-03-24T12:43:09Z,35–44,No,No,70,480,0,1,Yes,477,1,TRUE,2167,A pause button would be great- I got interrupted by life a couple of times. That could skew people's times higher unrelated to the effect of the tutorial,christopher_clever@berkeley.edu,NA,TRUE
+522e7b10-4800-4fc5-9a31-04a40c8bafa8,control,2026-03-24T21:23:43Z,35–44,Yes,No,67,600,0,0,NA,NA,NA,NA,NA,NA,NA,NA,FALSE
+2ba0b9b8-1589-493e-bd5f-ae111d580728,control,2026-03-25T02:04:05Z,45–54,Yes,No,71,351,0,0,NA,NA,NA,NA,NA,NA,NA,NA,FALSE
+7728e5b3-8c15-4d20-a891-237419210302,ai,2026-03-26T23:34:19Z,25–34,Yes,Yes,54,239,4,0,No,124,3,FALSE,728,NA,NA,NA,FALSE
+3f16371c-e537-4c84-80fb-ec16699e8888,video,2026-03-26T23:32:22Z,18–24,Yes,Yes,40,191,0,0,Yes,468,0,TRUE,2000,NA,miysiu80461@gmail.com,NA,TRUE
+282b3298-fa5a-4c6a-bb10-5509e00de7dc,ai,2026-03-27T22:16:35Z,25–34,No,No,70,383,0,1,No,207,0,FALSE,1216,it's hard,analyvayko@caredx.com,NA,FALSE
+504552fb-bce3-467b-92c7-c7f22d4385e9,control,2026-03-29T07:34:58Z,25–34,Yes,No,39,170,0,0,NA,NA,NA,NA,NA,NA,NA,NA,FALSE
+a221e5a1-e162-4b13-a4c6-a8826bb531f6,control,2026-03-29T07:35:43Z,25–34,Yes,No,0,2,0,0,Yes,319,2,TRUE,1128,NA,NA,NA,TRUE
+d5545ad0-3d74-4886-a8d9-e7ce371a0009,control,2026-03-30T19:41:30Z,35–44,Yes,No,4,37,0,0,No,1,0,FALSE,151,"I got smoked! A killer sudoku with only 4 values revealed? :exploding-head: 
+
+(PS: This is Alex)",NA,NA,FALSE
+97efb343-45f6-495b-8125-3f135627c1ea,control,2026-04-01T00:06:50Z,18–24,Yes,Yes,58,117,0,0,No,1801,0,FALSE,3945,NA,NA,NA,FALSE
+1666a90c-0e3e-4946-b412-5938a8079df1,ai,2026-04-01T00:55:30Z,25–34,Yes,No,71,203,0,0,NA,NA,NA,NA,NA,i didn't get to do the puzzle :( it skipped me,jessica_hu0321@yahoo.com,NA,FALSE
+aaa4f9d9-871e-4725-a416-9e6cdcf6e807,ai,2026-04-01T00:56:44Z,25–34,Yes,Yes,0,6,0,0,Yes,141,0,TRUE,451,:3,jessicahu0321.1@gmail.com,NA,TRUE
+513d3e8c-c1c5-4a4d-9908-bc093ae8ad5e,control,2026-04-01T05:29:50Z,25–34,Yes,No,22,91,0,0,NA,NA,NA,NA,NA,NA,NA,NA,FALSE
+de273831-f8ea-4ec4-95a2-0fca06acde04,control,2026-04-01T08:11:45Z,25–34,Yes,No,57,737,0,0,Yes,92,0,TRUE,633,"This was fun and adequately challenging. Instructions are pretty straightforward and the practice sudoku was helpful, especially with retaining the rules to memory.",lisakasamba@berkeley.edu,NA,TRUE
