@@ -2,10 +2,12 @@
 title: '241: Sudoku Experiment Final Paper'
 author: "Nonso Orji, Novejot Bal, Erica Li, David Schaaf"
 date: "April 14, 2026"
+subtitle: "Replication code: https://github.com/daveschaaf/mids_241_experiment"
 output:
+  bookdown::pdf_document2:
+    extra_dependencies: ["float"]
   bookdown::html_document2:
     df_print: paged
-  bookdown::pdf_document2: default
 ---
 
 ```{r setup, include=FALSE}
@@ -15,12 +17,15 @@ library(sandwich)
 library(stargazer)
 library(lmtest)
 library(AER)
+library(kableExtra)
 
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.pos = "H", out.extra = "")
 
 load("./data/processed/analysis_results.RData")
 load("./data/processed/sudoku_summary.RData")
 ```
+
+\newpage
 
 **_Does learning with an AI tutor improve performance of mastering a new puzzle compared to self-discovery or video tutorial?_**
 
@@ -138,8 +143,6 @@ Based on the results of the initial power analysis with pilot data, we aimed to 
 
 ## Intent to Treat
 ```{r models-outcome-itt, echo=FALSE, fig.cap="ITT Regression results", results='asis'}
-
-
 itt_completion_se <- sqrt(diag(vcovHC(itt_completion, type = "HC1")))
 itt_completion_adj_se <- sqrt(diag(vcovHC(itt_completion_adj, type = "HC1")))
 
@@ -171,31 +174,22 @@ ai_t_adj_itt_coef <- round(coef(itt_time_adj)["groupai"], 2)
 sudoku_t_adj_coef <- round(coef(itt_time_adj)["playedSudokuYes"], 2)
 killer_t_adj_coef <- round(coef(itt_time_adj)["playedKillerSudokuYes"], 2)
 
-stargazer(itt_completion, itt_completion_adj, itt_time, itt_time_adj,
-          se=list(itt_completion_se, itt_completion_adj_se, itt_time_se, itt_time_adj_se),
-          p=list(itt_completion_p, itt_completion_adj_p, itt_time_p, itt_time_adj_p),
-          header=FALSE,
-          title = "ITT Effect on Test Puzzle Completion and Solve Time",
-          covariate.labels = c("Video", "AI Tutor", "Played Sudoku", "Played Killer Sudoku"),
-          dep.var.labels = c("Completed (1=Yes, 0=No)", "Solve Time (minutes)"),
-          column.labels = c("Simple ITT", "Adjusted ITT", "Simple ITT", "Adjusted ITT"),
-          notes = c("Robust standard errors in parentheses", "Solve Time N=28 represents only participants who solved the puzzle."),
-          type='html')
-
 ```
 
-In the baseline model for completing the test puzzle `r control_itt_coef`% of the control group (p<0.05) solved successfully, and both groups outperformed with positive ITT effect `r video_itt_coef` percentage points (pp) for video and `r ai_itt_coef` pp for the AI group. Neither result is statistically significant. When adjusting for the level of sudoku experience the ITT falls to `r video_itt_adj_coef` pp and `r ai_itt_adj_coef` pp for video and AI respectively, neither significant.
+Full regression results are reported in (Figure \@ref(fig:participant-flow)) of the Appendix. In the baseline model for completing the test puzzle `r control_itt_coef`% of the control group (p<0.05) solved successfully, and both groups outperformed with positive ITT effect `r video_itt_coef` percentage points (pp) for video and `r ai_itt_coef` pp for the AI group. Neither result is statistically significant. When adjusting for the level of sudoku experience the ITT falls to `r video_itt_adj_coef` pp and `r ai_itt_adj_coef` pp for video and AI respectively, neither significant.
 
 For participants who successfully solved the puzzle (N=28), the average solve time for the control group was `r control_t_itt_coef` minutes (p<0.05). Both treatment groups had positive ITT effects at `r video_t_itt_coef` and `r ai_t_itt_coef` minutes for video and AI respectively (not statistically significant). After adjusting for the sudoku experience, control took `r control_t_adj_itt_coef` minutes (p<0.01). Video was almost a null effect at `r video_t_adj_itt_coef` minutes and the AI group was fastest with time reduction of `r ai_t_adj_itt_coef` minutes. The best predictor of solve time was experience with sudoku at `r sudoku_t_adj_coef` (p<0.05), while those with killer sudoku experience took `r killer_t_adj_coef` minutes longer. 
 
 ## Complier Average Causal Effect
-```{r models-outcome-cace, echo=FALSE, tab.cap="ITT and CACE Estimates for Puzzle Completion and Solve Time. Time analysis conditional on solvers only (N=28). No estimates are statistically significant.", results='asis'}
+
+```{r models-outcome-cace, echo=FALSE, tab.cap="ITT and CACE Estimates for Puzzle Completion and Solve Time. Time analysis conditional on solvers only (N=28). No estimates are statistically significant.", results='asis', fig.pos='H'}
 knitr::kable(results_table |> 
    select(Outcome, Treatment, ITT_Estimate, ITT_SE, 
             Compliance_Rate, CACE_Estimate, CACE_SE),
    col.names = c("Outcome", "Treatment", "ITT", "ITT SE", 
                  "Compliance Rate", "CACE", "CACE SE"),
-   digits = 3)
+   digits = 3)|>
+  kableExtra::kable_styling(latex_options = "hold_position")
 ```
 
 # Results
@@ -225,9 +219,24 @@ The only significant finding was that participants who had previously played sud
 
 # Conclusion
 
-# Appendix
+\newpage
 
-```{r killer-sudoku, echo=FALSE, fig.cap="Killer Sudoku Game."}
+# Appendix
+```{r itt-regression-table, results='asis'}
+stargazer(itt_completion, itt_completion_adj, itt_time, itt_time_adj,
+          se=list(itt_completion_se, itt_completion_adj_se, itt_time_se, itt_time_adj_se),
+          p=list(itt_completion_p, itt_completion_adj_p, itt_time_p, itt_time_adj_p),
+          header=FALSE,
+          title = "ITT Effect on Test Puzzle Completion and Solve Time",
+          covariate.labels = c("Video", "AI Tutor", "Played Sudoku", "Played Killer Sudoku"),
+          dep.var.labels = c("Completed (1=Yes, 0=No)", "Solve Time (minutes)"),
+          column.labels = c("Simple ITT", "Adjusted ITT", "Simple ITT", "Adjusted ITT"),
+          notes = c("Robust standard errors in parentheses", "Solve Time N=28 represents only participants who solved the puzzle."),
+          type='latex')
+```
+
+
+```{r killer-sudoku, echo=FALSE, fig.cap="Killer Sudoku puzzle used in the learning phase.", fig.pos='H', out.width='50%', fig.align='center'}
 knitr::include_graphics("./output/killer_sudoku.png")
 ```
 
@@ -238,12 +247,14 @@ Rules of Killer Sudoku:
 - Cells grouped in a cage must sum to the number in the cage's top-left corner.
 - No number may repeat within a cage, even if the row/column allows it.
 
-```{r participant-flow, echo=FALSE, fig.cap="Participant flow diagram. 55 total participants randomized across three conditions. Dropout reflects participants who did not complete the learning puzzle. Non-compliance reflects treatment group participants who did not engage with their assigned aid (video or AI tutor). Compliers are used for CACE estimation."}
+```{r participant-flow, echo=FALSE, out.width='80%', fig.cap="Participant flow diagram. 55 total participants randomized across three conditions. Dropout reflects participants who did not complete the learning puzzle. Non-compliance reflects treatment group participants who did not engage with their assigned aid (video or AI tutor). Compliers are used for CACE estimation."}
 knitr::include_graphics("./output/participant_flow.png")
 ```
-```{r group-assignment-chart, echo=FALSE, fig.cap="Treatment Group Assignment"}
+```{r group-assignment-chart, echo=FALSE, fig.cap="Treatment Group Assignment", fig.align='center'}
 knitr::include_graphics("./output/group_assignment.png")
 ```
+
+\newpage
 
 # References
 Chen, E., Li, J., Huang, S., Tang, X., Lin, J., Carvalho, P., & Koedinger, K. R. (2025). AI knows best? The paradox of expertise, AI‑reliance, and performance in educational tutoring decision‑making tasks. arXiv. https://arxiv.org/abs/2509.16772 
