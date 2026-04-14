@@ -217,9 +217,11 @@ We analyzed the outcomes for the percentage of participants who completed the pu
 
 In terms of completion percentage, both treatment groups showed higher completion rates than control (Control: `r control_completion_rate`, Video: `r video_completion_rate`, AI: `r ai_completion_rate`). Given the small N and low compliance rate these results are not statistically significant. Though they were more successful in completing the test puzzle, the treatment groups were slower than Control (time in minutes - Control: `r control_completion_time`, Video: `r video_completion_time`, AI: `r ai_completion_time`). 
 
-Combined, these results appear to indicate that participants who spent more time on the problem solved it more often. However, the correlation of time and completion is $\rho$ = `r cor_time_completion_r` (p = `r cor_time_completion_p`) showing that those outcomes are actually not closely tied together.
+Combined, these results appear to indicate that participants who spent more time on the problem solved it more often. However, the correlation of time and completion is $\rho$ = `r cor_time_completion_r` (p = `r cor_time_completion_p`) showing that  persistence alone is not enough to solve the puzzle.
 
-The only significant finding was that participants who had previously played sudoku performed `r abs(sudoku_t_adj_coef)` minutes better than participants who were new to the game. 
+The ITT estimates for completion are consistent with the raw completion rates, though they are imprecisely estimated. Standard errors for both Video and AI produce 95% confidence intervals that include 0. With low compliance rates in both, CACE estimate are large and preclude any causal inference about treatment effectiveness.
+
+The only significant finding was that participants who had previously played sudoku performed `r abs(sudoku_t_adj_coef)` minutes faster than participants who were new to the game. 
 
 # Conclusion
 
@@ -228,8 +230,6 @@ The only significant finding was that participants who had previously played sud
 ```{r killer-sudoku, echo=FALSE, fig.cap="Killer Sudoku Game."}
 knitr::include_graphics("./output/killer_sudoku.png")
 ```
-
-
 
 Rules of Killer Sudoku:
 
