@@ -2091,23 +2091,75 @@ Solve Time N=28 represents only participants who solved the puzzle.
 </div>
 <div id="complier-average-causal-effect" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Complier Average Causal Effect</h2>
-<p>CACE Video Completion: 0.447
-CACE AI Completion: 0.461
-CACE Video Time: 10
-CACE AI Time: 4.28
-Compliance Video: 25 %
-Compliance AI: 33.3 %</p>
-<p>Call:
-AER::ivreg(formula = completed ~ playedSudoku + playedKillerSudoku | group, data = df_clean)</p>
-<p>Coefficients:
-(Intercept) playedSudokuYes playedKillerSudokuYes<br />
-0.7551 -0.5102 0.3469</p>
+<table>
+<caption><span id="tab:models-outcome-cace">Table 6.1: </span>ITT and CACE Estimates for Puzzle Completion and Solve Time. Time analysis conditional on solvers only (N=28). No estimates are statistically significant.</caption>
+<colgroup>
+<col width="31%" />
+<col width="12%" />
+<col width="7%" />
+<col width="8%" />
+<col width="20%" />
+<col width="8%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Outcome</th>
+<th align="left">Treatment</th>
+<th align="right">ITT</th>
+<th align="right">ITT SE</th>
+<th align="left">Compliance Rate</th>
+<th align="right">CACE</th>
+<th align="right">CACE SE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Completion (probability)</td>
+<td align="left">Video</td>
+<td align="right">0.112</td>
+<td align="right">0.207</td>
+<td align="left">25.0%</td>
+<td align="right">0.447</td>
+<td align="right">0.972</td>
+</tr>
+<tr class="even">
+<td align="left">Completion (probability)</td>
+<td align="left">AI Tutor</td>
+<td align="right">0.154</td>
+<td align="right">0.182</td>
+<td align="left">33.3%</td>
+<td align="right">0.461</td>
+<td align="right">0.557</td>
+</tr>
+<tr class="odd">
+<td align="left">Time (minutes)</td>
+<td align="left">Video</td>
+<td align="right">2.500</td>
+<td align="right">7.416</td>
+<td align="left">25.0%</td>
+<td align="right">10.000</td>
+<td align="right">27.160</td>
+</tr>
+<tr class="even">
+<td align="left">Time (minutes)</td>
+<td align="left">AI Tutor</td>
+<td align="right">1.430</td>
+<td align="right">6.647</td>
+<td align="left">33.3%</td>
+<td align="right">4.280</td>
+<td align="right">18.810</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="results" class="section level1" number="7">
 <h1><span class="header-section-number">7</span> Results</h1>
-<p>There are 3 outcomes that were tracked with the results of the puzzle - the amount of time spent solving the second puzzle, successful completion of the second puzzle, and the number of actions taken on the puzzle board.
-A solver who successfully understands the rules and strategies would have a lower time, take fewer actions, and would have solved the puzzle.</p>
+<p>We analyzed the outcomes for the percentage of participants who completed the puzzle and the time to completion for those participants who successfully did complete it.</p>
+<p>In terms of completion percentage, both treatment groups showed higher completion rates than control (Control: 26.3%, Video: 37.5%, AI: 41.7%). Given the small N and low compliance rate these results are not statistically significant. Though they were more successful in completing the test puzzle, the treatment groups were slower than Control (time in minutes - Control: 13.6, Video: 16.1, AI: 15.1).</p>
+<p>Combined, these results appear to indicate that participants who spent more time on the problem solved it more often. However, the correlation of time and completion is <span class="math inline">\(\rho\)</span> = 0.07 (p = 0.722) showing that those outcomes are actually not closely tied together.</p>
+<p>The only significant finding was that participants who had previously played sudoku performed 21.73 minutes better than participants who were new to the game.</p>
 </div>
 <div id="conclusion" class="section level1" number="8">
 <h1><span class="header-section-number">8</span> Conclusion</h1>

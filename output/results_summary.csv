@@ -1,5 +1,5 @@
-"Outcome","Treatment","ITT_Estimate","Compliance_Rate","CACE_Estimate"
-"Completion (probability)","Video",0.112,0.25,0.447
-"Completion (probability)","AI Tutor",0.154,0.333,0.461
-"Time (minutes)","Video",2.5,0.25,10
-"Time (minutes)","AI Tutor",1.43,0.333,4.28
+"Outcome","Treatment","ITT_Estimate","Compliance_Rate","CACE_Estimate","ITT_SE","CACE_SE"
+"Completion (probability)","Video",0.112,"25.0%",0.447,0.207,0.972
+"Completion (probability)","AI Tutor",0.154,"33.3%",0.461,0.182,0.557
+"Time (minutes)","Video",2.5,"25.0%",10,7.416,27.16
+"Time (minutes)","AI Tutor",1.43,"33.3%",4.28,6.647,18.81

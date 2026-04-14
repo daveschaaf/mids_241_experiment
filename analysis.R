@@ -217,10 +217,24 @@ results_table <- data.frame(
   Treatment = c("Video", "AI Tutor", "Video", "AI Tutor"),
   ITT_Estimate = c(round(itt_video_completion, 3), round(itt_ai_completion, 3),
                    round(itt_video_time, 2), round(itt_ai_time, 2)),
-  Compliance_Rate = c(round(compliance_rate_video, 3), round(compliance_rate_ai, 3),
-                      round(compliance_rate_video, 3), round(compliance_rate_ai, 3)),
+  Compliance_Rate = c(paste0(sprintf("%.1f", compliance_rate_video*100),"%"), paste0(sprintf("%.1f", compliance_rate_ai*100),"%"),
+                      paste0(sprintf("%.1f", compliance_rate_video*100),"%"), paste0(sprintf("%.1f", compliance_rate_ai*100),"%")),
   CACE_Estimate = c(round(cace_video_completion, 3), round(cace_ai_completion, 3),
                     round(cace_video_time, 2), round(cace_ai_time, 2))
+)
+
+results_table$ITT_SE <- c(
+  round(itt_completion_se["groupvideo"], 3),
+  round(itt_completion_se["groupai"], 3),
+  round(itt_time_se["groupvideo"], 3),
+  round(itt_time_se["groupai"], 3)
+)
+
+results_table$CACE_SE <- c(
+  round(sqrt(diag(vcovHC(iv_video_completion, type = "HC1")))["compliantTRUE"], 3),
+  round(sqrt(diag(vcovHC(iv_ai_completion, type = "HC1")))["compliantTRUE"], 3),
+  round(sqrt(diag(vcovHC(iv_t_video_completion, type = "HC1")))["compliantTRUE"], 2),
+  round(sqrt(diag(vcovHC(iv_t_ai_completion, type = "HC1")))["compliantTRUE"], 2)
 )
 
 cat("=== Final Results Summary ===\n")
@@ -261,6 +275,19 @@ time_plot <- df_time |>
 print(time_plot)
 ggsave("./output/completion_times.png", time_plot, width = 5, height = 4, dpi = 300)
 
+
+## Supplementary results
+time_comp_cor <- cor.test(df_time$puzzle2ElapsedMinutes, as.numeric(df_time$completed))
+completion_rates <- df_clean |>
+  group_by(group) |>
+  summarise(completion_rate = round(mean(completed)*100,1))
+completion_times <- df_time |>
+  group_by(group) |>
+  summarise(completion_time = round(mean(puzzle2ElapsedMinutes),1))
+
+summary(lm(completed ~ playedSudoku + playedKillerSudoku, d= df_clean))
+##
+
 # ---- Save all key results to file ----
 save(itt_completion, itt_completion_robust,
      itt_time, itt_time_robust,
@@ -268,8 +295,8 @@ save(itt_completion, itt_completion_robust,
      itt_time_adj, itt_time_adj_robust,
      compliance_rate_video, compliance_rate_ai,
      cace_video_completion, cace_ai_completion,
-     cace_video_time, cace_ai_time,
-     results_table, cace_completion_iv,
+     cace_video_time, cace_ai_time, time_comp_cor,
+     results_table, completion_rates, completion_times,
      file = "./data/processed/analysis_results.RData")
 
 cat("\n=== Analysis complete! ===\n")

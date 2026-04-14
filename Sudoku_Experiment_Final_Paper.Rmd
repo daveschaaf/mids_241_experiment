@@ -16,7 +16,7 @@ library(stargazer)
 library(lmtest)
 library(AER)
 
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 
 load("./data/processed/analysis_results.RData")
 load("./data/processed/sudoku_summary.RData")
@@ -189,23 +189,37 @@ In the baseline model for completing the test puzzle `r control_itt_coef`% of th
 For participants who successfully solved the puzzle (N=28), the average solve time for the control group was `r control_t_itt_coef` minutes (p<0.05). Both treatment groups had positive ITT effects at `r video_t_itt_coef` and `r ai_t_itt_coef` minutes for video and AI respectively (not statistically significant). After adjusting for the sudoku experience, control took `r control_t_adj_itt_coef` minutes (p<0.01). Video was almost a null effect at `r video_t_adj_itt_coef` minutes and the AI group was fastest with time reduction of `r ai_t_adj_itt_coef` minutes. The best predictor of solve time was experience with sudoku at `r sudoku_t_adj_coef` (p<0.05), while those with killer sudoku experience took `r killer_t_adj_coef` minutes longer. 
 
 ## Complier Average Causal Effect
-```{r models-outcome-cace, echo=FALSE, fig.cap="CACE results", results='asis'}
-cat("CACE Video Completion:", round(cace_video_completion, 3), "\n")
-cat("CACE AI Completion:", round(cace_ai_completion, 3), "\n")
-cat("CACE Video Time:", round(cace_video_time, 2), "\n")
-cat("CACE AI Time:", round(cace_ai_time, 2), "\n")
-cat("Compliance Video:", round(compliance_rate_video, 1), "%\n")
-cat("Compliance AI:", round(compliance_rate_ai, 1), "%\n")
-
-
-cace_completion_iv
+```{r models-outcome-cace, echo=FALSE, tab.cap="ITT and CACE Estimates for Puzzle Completion and Solve Time. Time analysis conditional on solvers only (N=28). No estimates are statistically significant.", results='asis'}
+knitr::kable(results_table |> 
+   select(Outcome, Treatment, ITT_Estimate, ITT_SE, 
+            Compliance_Rate, CACE_Estimate, CACE_SE),
+   col.names = c("Outcome", "Treatment", "ITT", "ITT SE", 
+                 "Compliance Rate", "CACE", "CACE SE"),
+   digits = 3)
 ```
 
 # Results
 
-There are 3 outcomes that were tracked with the results of the puzzle - the amount of time spent solving the second puzzle, successful completion of the second puzzle, and the number of actions taken on the puzzle board.
-A solver who successfully understands the rules and strategies would have a lower time, take fewer actions, and would have solved the puzzle. 
+```{r results}
+cor_time_completion_r <- round(time_comp_cor$estimate, 3)
+cor_time_completion_p <- round(time_comp_cor$p.value, 3)
 
+control_completion_rate <- paste0(completion_rates$completion_rate[completion_rates$group == "control"],"%")
+video_completion_rate <- paste0(completion_rates$completion_rate[completion_rates$group == "video"],"%")
+ai_completion_rate <- paste0(completion_rates$completion_rate[completion_rates$group == "ai"],"%")
+
+control_completion_time <- completion_times$completion_time[completion_times$group == "control"]
+video_completion_time <- completion_times$completion_time[completion_times$group == "video"]
+ai_completion_time <- completion_times$completion_time[completion_times$group == "ai"]
+```
+
+We analyzed the outcomes for the percentage of participants who completed the puzzle and the time to completion for those participants who successfully did complete it. 
+
+In terms of completion percentage, both treatment groups showed higher completion rates than control (Control: `r control_completion_rate`, Video: `r video_completion_rate`, AI: `r ai_completion_rate`). Given the small N and low compliance rate these results are not statistically significant. Though they were more successful in completing the test puzzle, the treatment groups were slower than Control (time in minutes - Control: `r control_completion_time`, Video: `r video_completion_time`, AI: `r ai_completion_time`). 
+
+Combined, these results appear to indicate that participants who spent more time on the problem solved it more often. However, the correlation of time and completion is $\rho$ = `r cor_time_completion_r` (p = `r cor_time_completion_p`) showing that those outcomes are actually not closely tied together.
+
+The only significant finding was that participants who had previously played sudoku performed `r abs(sudoku_t_adj_coef)` minutes better than participants who were new to the game. 
 
 # Conclusion
 
@@ -214,6 +228,8 @@ A solver who successfully understands the rules and strategies would have a lowe
 ```{r killer-sudoku, echo=FALSE, fig.cap="Killer Sudoku Game."}
 knitr::include_graphics("./output/killer_sudoku.png")
 ```
+
+
 
 Rules of Killer Sudoku:
 
