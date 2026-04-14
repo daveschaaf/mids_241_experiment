@@ -14,7 +14,7 @@ library(tidyverse)
 library(sandwich)
 library(stargazer)
 library(lmtest)
-
+library(AER)
 
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -136,7 +136,7 @@ Based on the results of the initial power analysis with pilot data, we aimed to 
 # Models
 
 
-
+## Intent to Treat
 ```{r models-outcome-itt, echo=FALSE, fig.cap="ITT Regression results", results='asis'}
 
 
@@ -180,13 +180,26 @@ stargazer(itt_completion, itt_completion_adj, itt_time, itt_time_adj,
           dep.var.labels = c("Completed (1=Yes, 0=No)", "Solve Time (minutes)"),
           column.labels = c("Simple ITT", "Adjusted ITT", "Simple ITT", "Adjusted ITT"),
           notes = c("Robust standard errors in parentheses", "Solve Time N=28 represents only participants who solved the puzzle."),
-          type='text')
+          type='html')
 
 ```
 
 In the baseline model for completing the test puzzle `r control_itt_coef`% of the control group (p<0.05) solved successfully, and both groups outperformed with positive ITT effect `r video_itt_coef` percentage points (pp) for video and `r ai_itt_coef` pp for the AI group. Neither result is statistically significant. When adjusting for the level of sudoku experience the ITT falls to `r video_itt_adj_coef` pp and `r ai_itt_adj_coef` pp for video and AI respectively, neither significant.
 
-For participants who successfully solved the puzzle (N=28), the average solve time for the control group was `r control_t_itt_coef` minutes (p<0.05). Both treatment groups had positive ITT effects at `r video_t_itt_coef` and `r ai_t_itt_coef` minutes for video and AI respectively (not statistically significant). After adjusting for the sudoku experience, control took `r control_t_adj_itt_coef` minutes (p<0.01). Video was almost a null effect at `r video_t_adj_itt_coef` minutes and the AI group was fastest with time reduction of `r ai_t_adj_itt_coef`. The best predictor of solve time was experience with sudoku at `r sudoku_t_adj_coef` (p<0.05), while those with killer sudoku experience took `r killer_t_adj_coef` minutes longer. 
+For participants who successfully solved the puzzle (N=28), the average solve time for the control group was `r control_t_itt_coef` minutes (p<0.05). Both treatment groups had positive ITT effects at `r video_t_itt_coef` and `r ai_t_itt_coef` minutes for video and AI respectively (not statistically significant). After adjusting for the sudoku experience, control took `r control_t_adj_itt_coef` minutes (p<0.01). Video was almost a null effect at `r video_t_adj_itt_coef` minutes and the AI group was fastest with time reduction of `r ai_t_adj_itt_coef` minutes. The best predictor of solve time was experience with sudoku at `r sudoku_t_adj_coef` (p<0.05), while those with killer sudoku experience took `r killer_t_adj_coef` minutes longer. 
+
+## Complier Average Causal Effect
+```{r models-outcome-cace, echo=FALSE, fig.cap="CACE results", results='asis'}
+cat("CACE Video Completion:", round(cace_video_completion, 3), "\n")
+cat("CACE AI Completion:", round(cace_ai_completion, 3), "\n")
+cat("CACE Video Time:", round(cace_video_time, 2), "\n")
+cat("CACE AI Time:", round(cace_ai_time, 2), "\n")
+cat("Compliance Video:", round(compliance_rate_video, 1), "%\n")
+cat("Compliance AI:", round(compliance_rate_ai, 1), "%\n")
+
+
+cace_completion_iv
+```
 
 # Results
 

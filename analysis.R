@@ -1,12 +1,13 @@
 # ==============================================================================
 # DATASCI-241 Killer Sudoku Experiment - Final Analysis
-# Author: Nonso Orji
+# Author: Nonso Orji, David Schaaf
 # ==============================================================================
 
 library(dplyr)
 library(tidyverse)
 library(sandwich)
 library(lmtest)
+library(AER)
 
 # ---- Step 1: Load raw data ----
 
@@ -118,6 +119,29 @@ cat("ITT (AI):", round(itt_ai_completion, 3),
     "| Compliance:", round(compliance_rate_ai, 3),
     "| CACE:", round(cace_ai_completion, 3), "\n")
 
+
+# CACE Completion with instrumental variables
+df_clean_iv <- df_clean |>
+  mutate(
+    video_group = as.integer(group == 'video'),
+    ai_group = as.integer(group == 'ai')
+  )
+
+df_video_iv <- df_clean_iv |>
+  filter(group %in% c("control", "video")) |>
+  mutate(compliant = ifelse(is.na(compliant), FALSE, compliant))
+
+df_ai_iv <- df_clean_iv |>
+  filter(group %in% c("control", "ai")) |>
+  mutate(compliant = ifelse(is.na(compliant), FALSE, compliant))
+
+iv_video_completion <- AER::ivreg(completed ~ compliant | video_group, data = df_video_iv)
+iv_video_completion
+
+iv_ai_completion <- AER::ivreg(completed ~ compliant | ai_group, data = df_ai_iv)
+iv_ai_completion
+###
+
 # ITT effects from Step 4 (time)
 itt_video_time <- coef(itt_time)["groupvideo"]
 itt_ai_time <- coef(itt_time)["groupai"]
@@ -133,6 +157,32 @@ cat("ITT (Video):", round(itt_video_time, 3),
 cat("ITT (AI):", round(itt_ai_time, 3),
     "| Compliance:", round(compliance_rate_ai, 3),
     "| CACE:", round(cace_ai_time, 3), "min\n")
+
+# CACE Time  with instrumental variables
+df_time_iv <- df_clean_iv |>
+  filter(!is.na(puzzle2ElapsedSeconds)) |>
+  mutate(puzzle2ElapsedMinutes = puzzle2ElapsedSeconds / 60)
+
+df_t_video_iv <- df_time_iv |>
+  filter(group %in% c("control", "video")) |>
+  mutate(compliant = ifelse(is.na(compliant), FALSE, compliant))
+
+df_t_ai_iv <- df_time_iv |>
+  filter(group %in% c("control", "ai")) |>
+  mutate(compliant = ifelse(is.na(compliant), FALSE, compliant))
+
+iv_t_video_completion <- AER::ivreg(puzzle2ElapsedMinutes ~ compliant | video_group, data = df_t_video_iv)
+iv_t_video_completion
+
+iv_t_ai_completion <- AER::ivreg(puzzle2ElapsedMinutes ~ compliant | ai_group, data = df_t_ai_iv)
+iv_t_ai_completion
+###
+summary(iv_video_completion, vcov = vcovHC(iv_video_completion, type = "HC1"))
+summary(iv_ai_completion, vcov = vcovHC(iv_ai_completion, type = "HC1"))
+summary(iv_t_video_completion, vcov = vcovHC(iv_t_video_completion, type = "HC1"))
+summary(iv_t_ai_completion, vcov = vcovHC(iv_t_ai_completion, type = "HC1"))
+
+
 
 # ---- Step 7: Covariate adjustment ----
 # Note: puzzle2GivenDigits has no variation in our sample (no participants 
@@ -219,7 +269,7 @@ save(itt_completion, itt_completion_robust,
      compliance_rate_video, compliance_rate_ai,
      cace_video_completion, cace_ai_completion,
      cace_video_time, cace_ai_time,
-     results_table,
+     results_table, cace_completion_iv,
      file = "./data/processed/analysis_results.RData")
 
 cat("\n=== Analysis complete! ===\n")
