@@ -39,8 +39,6 @@ print(table(df_clean$group))
 cat("\nCompletion by group (cleaned):\n")
 print(table(df_clean$group, df_clean$completed))
 
-write_csv(df_clean, "./data/processed/df_clean.csv")
-
 # ---- Step 3: ITT Analysis on Completion ----
 
 itt_completion <- lm(completed ~ group, data = df_clean)
@@ -289,6 +287,8 @@ summary(lm(completed ~ playedSudoku + playedKillerSudoku, d= df_clean))
 ##
 
 # ---- Save all key results to file ----
+write_csv(df_clean, "./data/processed/df_clean.csv")
+
 save(itt_completion, itt_completion_robust,
      itt_time, itt_time_robust,
      itt_completion_adj, itt_completion_adj_robust,

@@ -23,6 +23,7 @@ knitr::opts_chunk$set(echo = FALSE, fig.pos = "H", out.extra = "")
 
 load("./data/processed/analysis_results.RData")
 load("./data/processed/sudoku_summary.RData")
+load("./data/processed/ri_results.RData")
 ```
 
 \newpage
@@ -67,8 +68,8 @@ Each participant has a potential outcome for each of the 3 treatment conditions 
 $E[Y(1)] - E[Y(0)]  = E[Y(1) - Y(0)] = E[\tau_{video}]$
 $E[Y(2)] - E[Y(0)]  = E[Y(2) - Y(0)] = E[\tau_{ai}]$
 There are 3 outcome variables that are tracked in the data so there are a total of 6 different measurable treatment effects:
-Video treatment: $\tau_{completion-video}, \tau_{actions-video}, \tau_{time-video}$
-AI Tutor treatment: $\tau_{completion-ai}, \tau_{actions-ai}, \tau_{time-ai}$
+Video treatment: $\tau_{completion-video}, \tau_{time-video}$
+AI Tutor treatment: $\tau_{completion-ai}, \tau_{time-ai}$
 
 # Hypothesis + Theory
 
@@ -192,6 +193,10 @@ knitr::kable(results_table |>
   kableExtra::kable_styling(latex_options = "hold_position")
 ```
 
+## Randomization Inference
+
+To complement the parametric analysis, we conducted a randomization inference analysis of the observed data. The group assignments were randomized 1,000 times to create a null distribution of simulated treatment effects. The observed values were compared to calculate two-sided p-values. Figure \@ref(fig:randomization-inference-chart) shows full distributions. None of the 4 outcomes were statistically significant (Completion-Video p-value `r round(completion_video_p,3)`, Completion-AI p-value `r completion_ai_p`, Time-Video p-value `r time_video_p`, Time-AI p-value `r time_ai_p`).
+
 # Results
 
 ```{r results}
@@ -217,12 +222,14 @@ The ITT estimates for completion are consistent with the raw completion rates, t
 
 The only significant finding was that participants who had previously played sudoku performed `r abs(sudoku_t_adj_coef)` minutes faster than participants who were new to the game. 
 
+
+
 # Conclusion
 
 \newpage
 
 # Appendix
-```{r itt-regression-table, results='asis'}
+```{r itt-regression-table, results='asis', tab.cap="Regression Results ITT"}
 stargazer(itt_completion, itt_completion_adj, itt_time, itt_time_adj,
           se=list(itt_completion_se, itt_completion_adj_se, itt_time_se, itt_time_adj_se),
           p=list(itt_completion_p, itt_completion_adj_p, itt_time_p, itt_time_adj_p),
@@ -235,8 +242,11 @@ stargazer(itt_completion, itt_completion_adj, itt_time, itt_time_adj,
           type='latex')
 ```
 
+```{r randomization-inference-chart, echo=FALSE, fig.cap="Null distributions of randomization inference analysis", fig.pos='H', out.width='100%', fig.align='center'}
+knitr::include_graphics("./output/ri_distributions.png")
+```
 
-```{r killer-sudoku, echo=FALSE, fig.cap="Killer Sudoku puzzle used in the learning phase.", fig.pos='H', out.width='50%', fig.align='center'}
+```{r killer-sudoku, echo=FALSE, fig.cap="Killer Sudoku puzzle used in the learning phase.", out.width='50%', fig.pos='H', fig.align='center'}
 knitr::include_graphics("./output/killer_sudoku.png")
 ```
 
