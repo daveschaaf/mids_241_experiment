@@ -1892,7 +1892,7 @@ AI Tutor treatment: <span class="math inline">\(\tau_{completion-ai}, \tau_{time
 <div id="hypothesis-theory" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Hypothesis + Theory</h1>
 <p>Null Hypothesis: Learning with an AI tutor has no effect on performance of completing a new puzzle compared to self-discovery or video tutorial.</p>
-<p>Alternative Hypothesis: Learning with an AI tutor improves performance by reducing the completion time of a new puzzle by 3 minutes and a video tutorial by 1.5 minutes.</p>
+<p>Alternative Hypothesis: Compared to the control group, the AI tutor reduces puzzle completion time by 3 minutes and the video tutorial reduces it by 1.5 minutes.</p>
 <p>The treatment we employ is expected to improve a participant’s puzzle-solving performance through an AI tutor’s guided and personalizable teaching model. The AI-tutor is able to adapt to a learner’s exact questions and learning needs unlike a non-personalized method such as tutorial video. A study of 50 students was evaluated using a personalized chatbot in three settings: a general purpose model, a tutor model, and a feedback model. The tutor model chatbot resulted in the best user-experience with 70% of students planning to use the tool in future physics assignments (Goel &amp; Lieb, 2024). However the AI-tutor needs to balance over-reliance (accepting incorrect AI feedback) and under-reliance (rejecting correct AI feedback), which can result in adverse learning outcomes.</p>
 </div>
 <div id="data" class="section level1" number="5">
@@ -1900,7 +1900,7 @@ AI Tutor treatment: <span class="math inline">\(\tau_{completion-ai}, \tau_{time
 <div id="randomization" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Randomization</h2>
 <p>The application set a random treatment condition at the time the participant loaded the page and the randomization was stored in each user session. That way, if the participant decided to refresh the page for any reason they would still be assigned to the same condition. We used a JavaScript random function to choose between one of the 3 treatments. Each randomization was an independent run of the randomization function, so the prior results did not change the probabilities for the next generated user session. Each of the 3 conditions had uniform probability of being chosen.</p>
-<p>There were 55 unique participants who clicked consent and reached the treatment page. Initial randomization resulted in 26 control, 13 video, and 16 AI participants. Participants were dropped from the analysis if they spent less than 60 seconds on the learning page as they could not have received any level of treatment in that time frame. One participant with a time of 2 hours was also dropped due to abandonment. After the dropout 19 control, 8 video, and 12 AI participants remained (Figure <a href="#fig:participant-flow">10.2</a>).</p>
+<p>There were 55 unique participants who clicked consent and reached the treatment page. Initial randomization resulted in 26 control, 13 video, and 16 AI participants. Participants were dropped from the analysis if they spent less than 60 seconds on the learning page and had no puzzle 2 data, as they could not have received any level of treatment in that time frame. One participant with a time of 2 hours was also dropped due to abandonment. Remaining participants with missing puzzle 2 completion data were treated as not having completed the puzzle. After cleaning, 19 control, 8 video, and 12 AI participants remained (Figure <a href="#fig:participant-flow">10.2</a>).</p>
 <p>The randomization did not produce a uniform distribution across all groups (Figure <a href="#fig:group-assignment-chart">10.3</a>). The control group had 19 compared to 8 assigned to video and 12 assigned to AI Tutor. With total participation of 39 participants, the data distribution is unbalanced with 48.7% assigned to control, 20.5% to video, and 30.8% to AI tutor.</p>
 </div>
 <div id="covariate-balance-checks" class="section level2" number="5.2">
@@ -1912,25 +1912,25 @@ AI Tutor treatment: <span class="math inline">\(\tau_{completion-ai}, \tau_{time
 <div id="compliance-checks" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Compliance Checks</h2>
 <p>The participants’ results are stored in a Google Sheets by Vercel and includes columns such as ‘puzzle1TabSwitches’, ‘puzzle2TabSwitches’, and ‘aiMessageCount’. Tab switch columns can help us evaluate whether a participant may have deviated from their respective treatment group by searching for puzzle-solving information elsewhere or if this caused other deviant behavior which may impact the estimated treatment effect.</p>
-<p>The AI message count column can help us evaluate whether participants assigned to the AI Tutor group actually utilized the assigned treatment for assistance in learning how to solve the puzzle. We recorded the full chat history of all participants who interacted with with AI tutor to see what types of conversations they had. Of the 14 participants who were assigned to the AI tutor group, 5 sent messages to the chat bot.</p>
+<p>The AI message count column can help us evaluate whether participants assigned to the AI Tutor group actually utilized the assigned treatment for assistance in learning how to solve the puzzle. We recorded the full chat history of all participants who interacted with the AI tutor to see what types of conversations they had.</p>
 <p>We also tracked the amount of time spent on the first puzzle during the learning phase. The video was 4:39 long, so any video participant who did not spend at least that amount of time on the page would not have watched the full video. Of the 10 participants who were assigned to the video group, 2 spent enough time on the page to have watched the video in full. It is possible people watched the video at &gt; 1x speed, but it is not certain. We were not able to detect if the participant clicked play on the video due to YouTube iframe restrictions.</p>
 <p>Of the 12 people assigned to the AI tutor group, 4 sent messages to the chat bot, a compliance rate of 33%.</p>
 <p>Of the 8 participants assigned to the video group, 2 spent enough time on the page to have watched the video in full, a compliance rate of 25%.</p>
 <p>Tab switch behavior was minimal across all groups. The mean number of tab switches during the test puzzle was 0.2 for control, 0.6 for video, and 0.6 for the AI tutor group. No group had a maximum exceeding 4 tab switches, and the majority of participants recorded zero switches, suggesting that tab switching did not represent a meaningful compliance concern.</p>
-<p>Remedies for noncompliance were designed pre-treatment as part of the design of the experiment and participant collection. The instructions that participants were given through the web application were designed and revised iteratively to minimize reader-fatigue and the time to complete the experiment outside of the actual puzzle completion time. Monetary incentives were also advertised in the web application’s first page by stating, “Upon completion, you will have the option to enter your email for a chance to win a $100 gift card awarded to one randomly selected participant.” Because of the low compliance rate we observed, the results of the experiment would be interpreted through the compiler average causal effect.</p>
+<p>Remedies for noncompliance were designed pre-treatment as part of the design of the experiment and participant collection. The instructions that participants were given through the web application were designed and revised iteratively to minimize reader-fatigue and the time to complete the experiment outside of the actual puzzle completion time. Monetary incentives were also advertised in the web application’s first page by stating, “Upon completion, you will have the option to enter your email for a chance to win a $100 gift card awarded to one randomly selected participant.” Because of the low compliance rate we observed, the results of the experiment would be interpreted through the complier average causal effect.</p>
 </div>
 </div>
 <div id="models" class="section level1" number="6">
 <h1><span class="header-section-number">6</span> Models</h1>
 <div id="intent-to-treat" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Intent to Treat</h2>
-<p>Full regression results are reported in Table <a href="#tab:itt-regression-table"><strong>??</strong></a>. In the baseline model for completing the test puzzle 26.3% of the control group (p&lt;0.05) solved successfully, and both groups outperformed with positive ITT effect 11.2 percentage points (pp) for video and 15.4 pp for the AI group. Neither result is statistically significant. When adjusting for the level of sudoku experience the ITT falls to 1.9 pp and 6.6 pp for video and AI respectively, neither significant.</p>
+<p>Full regression results are reported in Table 1. In the baseline model for completing the test puzzle 26.3% of the control group (p&lt;0.05) solved successfully, and both groups outperformed with positive ITT effect 11.2 percentage points (pp) for video and 15.4 pp for the AI group. Neither result is statistically significant. When adjusting for the level of sudoku experience the ITT falls to 1.9 pp and 6.6 pp for video and AI respectively, neither significant.</p>
 <p>For participants who successfully solved the puzzle (N=28), the average solve time for the control group was 13.62 minutes (p&lt;0.05). Both treatment groups had positive ITT effects at 2.5 and 1.43 minutes for video and AI respectively (not statistically significant). After adjusting for the sudoku experience, control took 34.41 minutes (p&lt;0.01). Video was almost a null effect at 0.22 minutes and the AI group was fastest with time reduction of -6.22 minutes. The best predictor of solve time was experience with sudoku at -21.73 (p&lt;0.05), while those with killer sudoku experience took 11.29 minutes longer.</p>
 </div>
 <div id="complier-average-causal-effect" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Complier Average Causal Effect</h2>
-<p>With such low compliance from participants (25% for video treatment, 33% for AI tutor), the Complier Average Causal Effect (CACE) was calculated to interpret the causal effect for compliers, those who followed the instructions of their respective treatment group and completed the experiment without failing the compliance checks. The results of the CACE analysis on puzzle completion and time to solve are reported in Table <a href="#fig:model-outcome-cace"><strong>??</strong></a>.</p>
-<table class="table" style="color: black; margin-left: auto; margin-right: auto;">
+<p>With such low compliance from participants (25% for video treatment, 33% for AI tutor), the Complier Average Causal Effect (CACE) was calculated to interpret the causal effect for compliers, those who followed the instructions of their respective treatment group and completed the experiment without failing the compliance checks. The results of the CACE analysis on puzzle completion and time to solve are reported in Table 2.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:models-outcome-cace">Table 6.1: </span><span id="tab:models-outcome-cace">Table 6.2: </span>ITT and CACE Estimates for Puzzle Completion and Solve Time. Time analysis conditional on solvers only (N=28). No estimates are statistically significant.
 </caption>
@@ -2086,14 +2086,21 @@ Figure 7.1: Completion Times and Rates per Assignment
 </div>
 <div id="limitations-and-future-enhancements" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Limitations and Future Enhancements</h1>
-<p>Small sample size (n = 39 after cleaning) — underpowered for medium effects
-Compliance issues — most participants assigned to a treatment did not fully engage with it
-Difficulty change mid-study — puzzle 2 was made easier after feedback, creating inconsistency in the test environment
-Voluntary recruitment limits generalizability beyond the MIDS/MICS community</p>
-<p>Force compliance by gating progress on video watch time or AI interaction
-Lock puzzle difficulty before launch and pilot more aggressively
-Recruit with a larger incentive or through Prolific to reach the target N = 90
-Add a post-puzzle mini-quiz to directly measure learning, not just speed and completion</p>
+<p><strong>Limitations</strong></p>
+<ul>
+<li>Small sample size (n = 39 after cleaning) — underpowered for medium effects</li>
+<li>Compliance issues — most participants assigned to a treatment did not fully engage with it</li>
+<li>Difficulty change mid-study — puzzle 2 was made easier after feedback, creating inconsistency in the test environment</li>
+<li>Voluntary recruitment limits generalizability beyond the MIDS/MICS community</li>
+<li>Participants with missing puzzle 2 completion data were treated as not completing the puzzle, which may underestimate true completion rates</li>
+</ul>
+<p><strong>Future Enhancements</strong></p>
+<ul>
+<li>Force compliance by gating progress on video watch time or AI interaction</li>
+<li>Lock puzzle difficulty before launch and pilot more aggressively</li>
+<li>Recruit with a larger incentive or through Prolific to reach the target N = 90</li>
+<li>Add a post-puzzle mini-quiz to directly measure learning, not just speed and completion</li>
+</ul>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="appendix" class="section level1" number="10">
