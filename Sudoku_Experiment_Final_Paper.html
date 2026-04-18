@@ -1930,7 +1930,7 @@ AI Tutor treatment: <span class="math inline">\(\tau_{completion-ai}, \tau_{time
 <div id="complier-average-causal-effect" class="section level2" number="6.2">
 <h2><span class="header-section-number">6.2</span> Complier Average Causal Effect</h2>
 <p>With such low compliance from participants (25% for video treatment, 33% for AI tutor), the Complier Average Causal Effect (CACE) was calculated to interpret the causal effect for compliers, those who followed the instructions of their respective treatment group and completed the experiment without failing the compliance checks. The results of the CACE analysis on puzzle completion and time to solve are reported in Table 2.</p>
-<table class="table" style="margin-left: auto; margin-right: auto;">
+<table class="table" style="color: black; margin-left: auto; margin-right: auto;">
 <caption>
 <span id="tab:models-outcome-cace">Table 6.1: </span><span id="tab:models-outcome-cace">Table 6.2: </span>ITT and CACE Estimates for Puzzle Completion and Solve Time. Time analysis conditional on solvers only (N=28). No estimates are statistically significant.
 </caption>
@@ -2087,20 +2087,10 @@ Figure 7.1: Completion Times and Rates per Assignment
 <div id="limitations-and-future-enhancements" class="section level1" number="9">
 <h1><span class="header-section-number">9</span> Limitations and Future Enhancements</h1>
 <p><strong>Limitations</strong></p>
-<ul>
-<li>Small sample size (n = 39 after cleaning) — underpowered for medium effects</li>
-<li>Compliance issues — most participants assigned to a treatment did not fully engage with it</li>
-<li>Difficulty change mid-study — puzzle 2 was made easier after feedback, creating inconsistency in the test environment</li>
-<li>Voluntary recruitment limits generalizability beyond the MIDS/MICS community</li>
-<li>Participants with missing puzzle 2 completion data were treated as not completing the puzzle, which may underestimate true completion rates</li>
-</ul>
+<p>There were several limitations in our experiment that decreased the generalizability of the study results. Based on our initial approach of detecting a medium effect with at least 90 participants from the power analysis results, after cleaning the collected data we were left with 39 data points. This made the results under-powered for medium effects, and instead became better suited to detect larger effects (5 minute difference in completion time). The larger we expand the causal effect, the less generalization seems to be apparent in our results when trying to make a larger claim from barely enough people to assume normality and independence. Compliance issues were that much more apparent with such a small random selection of participants. Most people assigned to a treatment did not fully engage and failed our self-imposed compliance checks. Voluntary recruitment from the MIDS/MICS community the study targeted also limited generalizability beyond this population. And from those with missing data from the test puzzle completion, we treated as incomplete, which may have underestimated true completion rates.</p>
+<p>Additionally, there was a mid-study change made to the test puzzle to change the difficulty. We received feedback from multiple participants that the difficulty of the puzzle was too high and difficult to complete from multiple group assignments. This created an inconsistency in our test environment, that in hind-sight possibly should have prompted a redo of the experiment from beginning to end with a new sample of participants.</p>
 <p><strong>Future Enhancements</strong></p>
-<ul>
-<li>Force compliance by gating progress on video watch time or AI interaction</li>
-<li>Lock puzzle difficulty before launch and pilot more aggressively</li>
-<li>Recruit with a larger incentive or through Prolific to reach the target N = 90</li>
-<li>Add a post-puzzle mini-quiz to directly measure learning, not just speed and completion</li>
-</ul>
+<p>In future implementations, we would prioritize compliance more by gating participant progress through required video watch times or level/amount of AI interaction. With a larger budget, we would find additional avenues for rercruitment through online platforms like prolific to generate a higher-powered study and also offer larger incentives for participants due to a time and effort intensive study. In terms of our experiment design changes, puzzle difficulty should be locked prior to launching the experiment by implementing a larger pilot and feedback collection system. To hone in on the focus on measuring learning directly, we recommend adding a post-puzzle mini-quiz as a mechanism to capture a participant’s understanding of the test and evaluate results beyond just speed and completion rate.</p>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="appendix" class="section level1" number="10">

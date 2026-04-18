@@ -259,19 +259,13 @@ The results of our experiment were not statistically significant, and thus faile
 
 **Limitations**
 
-- Small sample size (n = 39 after cleaning) — underpowered for medium effects
-- Compliance issues — most participants assigned to a treatment did not fully engage with it
-- Difficulty change mid-study — puzzle 2 was made easier after feedback, creating inconsistency in the test environment
-- Voluntary recruitment limits generalizability beyond the MIDS/MICS community
-- Participants with missing puzzle 2 completion data were treated as not completing the puzzle, which may underestimate true completion rates
+There were several limitations in our experiment that decreased the generalizability of the study results. Based on our initial approach of detecting a medium effect with at least 90 participants from the power analysis results, after cleaning the collected data we were left with 39 data points. This made the results under-powered for medium effects, and instead became better suited to detect larger effects (5 minute difference in completion time). The larger we expand the causal effect, the less generalization seems to be apparent in our results when trying to make a larger claim from barely enough people to assume normality and independence. Compliance issues were that much more apparent with such a small random selection of participants. Most people assigned to a treatment did not fully engage and failed our self-imposed compliance checks. Voluntary recruitment from the MIDS/MICS community the study targeted also limited generalizability beyond this population. And from those with missing data from the test puzzle completion, we treated as incomplete, which may have underestimated true completion rates. 
+
+Additionally, there was a mid-study change made to the test puzzle to change the difficulty. We received feedback from multiple participants that the difficulty of the puzzle was too high and difficult to complete from multiple group assignments. This created an inconsistency in our test environment, that in hind-sight possibly should have prompted a redo of the experiment from beginning to end with a new sample of participants. 
 
 **Future Enhancements**
 
-- Force compliance by gating progress on video watch time or AI interaction
-- Lock puzzle difficulty before launch and pilot more aggressively
-- Recruit with a larger incentive or through Prolific to reach the target N = 90
-- Add a post-puzzle mini-quiz to directly measure learning, not just speed and completion
-
+In future implementations, we would prioritize compliance more by gating participant progress through required video watch times or level/amount of AI interaction. With a larger budget, we would find additional avenues for rercruitment through online platforms like prolific to generate a higher-powered study and also offer larger incentives for participants due to a time and effort intensive study. In terms of our experiment design changes, puzzle difficulty should be locked prior to launching the experiment by implementing a larger pilot and feedback collection system. To hone in on the focus on measuring learning directly, we recommend adding a post-puzzle mini-quiz as a mechanism to capture a participant's understanding of the test and evaluate results beyond just speed and completion rate. 
 
 \newpage
 

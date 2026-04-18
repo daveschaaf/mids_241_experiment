@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  16 APR 2026 22:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.4.16)  17 APR 2026 20:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -566,17 +566,10 @@ File: ./output/power_analysis_results.png Graphic file (type png)
 <use ./output/power_analysis_results.png>
 Package pdftex.def Info: ./output/power_analysis_results.png  used on input line 133.
 (pdftex.def)             Requested size: 469.75502pt x 335.54475pt.
-[3 <./output/power_analysis_results.png>] [4{/Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [5{/Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}]
-
-LaTeX Warning: Reference `tab:itt-regression-table' on page 6 undefined on input line 215.
-
-[6]
+[3 <./output/power_analysis_results.png>] [4{/Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}] [5{/Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}] [6]
 Overfull \hbox (9.41296pt too wide) in paragraph at lines 222--258
  [][] 
  []
-
-
-LaTeX Warning: Reference `fig:model-outcome-cace' on page 7 undefined on input line 262.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -635,20 +628,17 @@ Package pdftex.def Info: ./output/sudoku_experience.png  used on input line 389.
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
-
-LaTeX Warning: There were undefined references.
-
  ) 
 Here is how much of TeX's memory you used:
- 13089 strings out of 469339
- 204496 string characters out of 5465322
+ 13087 strings out of 469339
+ 204470 string characters out of 5465322
  636712 words of memory out of 5000000
- 41631 multiletter control sequences out of 15000+600000
+ 41629 multiletter control sequences out of 15000+600000
  682774 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  89i,11n,93p,1439b,454s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/novejotbal/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on Sudoku_Experiment_Final_Paper.pdf (14 pages, 762668 bytes).
+Output written on Sudoku_Experiment_Final_Paper.pdf (14 pages, 763736 bytes).
 PDF statistics:
  289 PDF objects out of 1000 (max. 8388607)
  234 compressed objects within 3 object streams
